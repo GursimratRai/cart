@@ -65,10 +65,21 @@ class App extends React.Component{
       const {products} = this.state;
       const index = products.indexOf(product);
 
-      console.log('qty',products[index].qty)
-      products[index].qty+=1;
-      this.setState({
-          products:products
+      // console.log('qty',products[index].qty)
+      // products[index].qty+=1;
+      // this.setState({
+      //     products:products
+      // })
+      const docRef = this.db.collection('products').doc(products[index].id);
+      docRef
+      .update({
+        qty : products[index].qty + 1
+      })
+      .then(() => {
+        console.log('Updated (Increase) Successfully');
+      })
+      .catch((error) => {
+        console.log('Error in Updating',error);
       })
   }
 
@@ -81,9 +92,20 @@ class App extends React.Component{
       const {products} = this.state;
       const index = products.indexOf(product);
       
-      products[index].qty-=1;
-      this.setState({
-          products:products
+      // products[index].qty-=1;
+      // this.setState({
+      //     products:products
+      // })
+      const docRef = this.db.collection('products').doc(products[index].id);
+      docRef
+      .update({
+        qty : products[index].qty - 1
+      })
+      .then(() => {
+        console.log('Updated (Decrease) Successfully');
+      })
+      .catch((error) => {
+        console.log('Error in Updating',error);
       })
   }
 
