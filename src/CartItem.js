@@ -2,30 +2,6 @@ import React from 'react';
 
 class CartItem extends React.Component{
     
-    increseQuantity = () => {
-        //setState form 1
-        // this.setState({
-        //     qty: this.state.qty + 1
-        // });
-
-        //setState form 2
-        //If prevState require use this
-        this.setState((prevState) => {
-           return{
-            qty:prevState.qty + 1
-           }
-        });
-    }
-    decreseQuantity = () =>{
-        this.setState((prevState)=>{
-            if(prevState.qty==0){
-                return;
-            }
-            return{
-                qty:prevState.qty - 1
-            }
-        })
-    }
     render(){
         //Object destructuring
         const {price,title,qty} = this.props.product;
@@ -42,13 +18,13 @@ class CartItem extends React.Component{
                         <img 
                             alt='increase'
                             className="action-icons" 
-                            onClick = {this.increseQuantity}
+                            onClick = {()=> this.props.onIncreaseQuantity(this.props.product)}
                             src="https://image.flaticon.com/icons/svg/992/992651.svg"
                          />
                         <img 
                             alt='decrease' 
                             className="action-icons" 
-                            onClick={this.decreseQuantity}
+                            onClick={()=>this.props.onDecreaseQuantity(this.props.product)}
                             src="https://image.flaticon.com/icons/svg/1665/1665612.svg"
                         />
                         <img 

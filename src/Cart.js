@@ -29,6 +29,30 @@ class Cart extends React.Component{
 
         }
     }
+    handleIncreaseQuantity = (product)=>{
+
+        const {products} = this.state;
+        const index = products.indexOf(product);
+
+        products[index].qty+=1;
+        this.setState({
+            products:products
+        })
+    }
+    handleDecreaseQuantity = (product)=>{
+
+        if(product.qty==0){
+            return;
+        }
+        
+        const {products} = this.state;
+        const index = products.indexOf(product);
+        
+        products[index].qty-=1;
+        this.setState({
+            products:products
+        })
+    }
     render () {
         const {products} =this.state;
         console.log(products);
@@ -39,6 +63,8 @@ class Cart extends React.Component{
                        <CartItem 
                           product={product}
                           key={product.id}
+                          onIncreaseQuantity = {this.handleIncreaseQuantity}
+                          onDecreaseQuantity = {this.handleDecreaseQuantity}
                         //   func ={()=> {console.log('function')}}   we can pass the function as attribute to child Component
                         //   isLoggeIn = {false}                      we can pass the boolean 
                         //   jsx = {<h1>Test</h1>}                    we can pass the jsx too
