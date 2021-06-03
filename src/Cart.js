@@ -53,6 +53,13 @@ class Cart extends React.Component{
             products:products
         })
     }
+    handleDeleteProduct = (id) => {
+       const {products} = this.state;
+       const items = products.filter((item) => item.id!=id );
+       this.setState({
+           products:items
+       });
+    }
     render () {
         const {products} =this.state;
         console.log(products);
@@ -65,11 +72,8 @@ class Cart extends React.Component{
                           key={product.id}
                           onIncreaseQuantity = {this.handleIncreaseQuantity}
                           onDecreaseQuantity = {this.handleDecreaseQuantity}
-                        //   func ={()=> {console.log('function')}}   we can pass the function as attribute to child Component
-                        //   isLoggeIn = {false}                      we can pass the boolean 
-                        //   jsx = {<h1>Test</h1>}                    we can pass the jsx too
-                        //   compo = {<CartItem />}                   we can pass the component to from the parent to child component too
-                        />
+                          onDeleteProduct = {this.handleDeleteProduct}
+                          />
                    );
                })}
 
