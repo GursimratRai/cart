@@ -115,6 +115,15 @@ class App extends React.Component{
     this.setState({
         products:items
     });
+    const docRef = this.db.collection('products').doc(id);
+      docRef
+      .delete()
+      .then(() => {
+        console.log('Delete Successfully');
+      })
+      .catch((error) => {
+        console.log('Error in Delete',error);
+      })
   }
 
   getCartCount = () => {
