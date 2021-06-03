@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as firebase from './firebase'
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
  var firebaseConfig = {
     apiKey: "AIzaSyCJOJkWXzlQJ_y3TnXQUwR1SaElpdLpurA",
@@ -23,3 +24,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+export default App;

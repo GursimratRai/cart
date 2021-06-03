@@ -2,7 +2,7 @@ import React from 'react';
 import CartItem from './CartItem';
 
 const Cart = (props) =>{
-    console.log(props);
+    console.log('props',props);
     const {products} = props;
     console.log(products);
     return (
