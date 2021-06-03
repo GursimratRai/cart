@@ -40,23 +40,23 @@ class App extends React.Component{
      firebase
       .firestore()
       .collection('products')
-      .get()
-      .then((snapshot) => {
-         snapshot.docs.map((doc) => {
-          console.log(doc.data());   
-         });
+      .onSnapshot((snapshot) => {
+        snapshot.docs.map((doc) => {
+         console.log(doc.data());   
+        });
 
-          const products = snapshot.docs.map((doc) => {
-              const data = doc.data(); 
-              data['id'] =doc.id;
-              return data;
-          })
+         const products = snapshot.docs.map((doc) => {
+             const data = doc.data(); 
+             data['id'] =doc.id;
+             return data;
+         })
 
-          this.setState({
-            products,
-            loading:false
-          })
-      })
+         this.setState({
+           products:products,
+           loading:false
+         })
+     })
+
   }
 
   handleIncreaseQuantity = (product)=>{
@@ -64,6 +64,7 @@ class App extends React.Component{
       const {products} = this.state;
       const index = products.indexOf(product);
 
+      console.log('qty',products[index].qty)
       products[index].qty+=1;
       this.setState({
           products:products
