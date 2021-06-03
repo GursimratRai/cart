@@ -1,18 +1,7 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-    constructor(){
-        super();
-        this.state={
-            title:'Phone',
-            price:900,
-            qty:1,
-            img:''
-        }
-        //used to bind the function 
-        // this.increseQuantity = this.increseQuantity.bind(this);
-    }
-    // Another way to bind the function is by using arrow functions
+    
     increseQuantity = () => {
         //setState form 1
         // this.setState({
@@ -39,7 +28,7 @@ class CartItem extends React.Component{
     }
     render(){
         //Object destructuring
-        const {price,title,qty} = this.state;
+        const {price,title,qty} = this.props.product;
         return (
             <div className="cart-item">
                 <div className = "left-block">
